@@ -1,6 +1,5 @@
-from cProfile import label
 from django import forms
-from cash.models import Question, Answer
+from cash.models import Question, Answer, Comment
 
 class QuestionForm(forms.ModelForm):
     class Meta:
@@ -17,4 +16,12 @@ class AnswerForm(forms.ModelForm):
         fields = ['content']
         labels = {
             'content': '답변내용',
+        }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
+        labels = {
+            'content': '댓글내용',
         }
