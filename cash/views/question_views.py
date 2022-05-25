@@ -44,7 +44,8 @@ def question_modify(request, question_id):
 def question_delete(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     if request.user != question.author:
-        messages.error(request,'수정 권한이 없슴둥')
+        messages.error(request,'삭제 권한이 없슴둥')
         return redirect('cash:detail', question_id= question.id)
-    question.delete()
-    return redirect('cash:index')    
+    else: 
+        question.delete()
+    return redirect('cash:index')

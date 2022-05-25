@@ -1,6 +1,6 @@
 from . import views
 from django.urls import path
-from .views import base_views, question_views, answer_views, comment_views
+from .views import base_views, question_views, answer_views, comment_views, vote_views
 
 app_name = 'cash'
 
@@ -20,4 +20,7 @@ urlpatterns = [
     path('comment/create/question/<int:question_id>/', comment_views.comment_create_question, name='comment_create_question'),
     path('comment/modify/question/<int:comment_id>/', comment_views.comment_modify_question, name='comment_modify_question'),
     path('comment/delete/question/<int:comment_id>/', comment_views.comment_delete_question, name='comment_delete_question'),
+    #vote_views.py
+    path('vote/question/<int:question_id>/', vote_views.vote_question, name='vote_question'),
+    path('vote/answer/<int:answer_id>/', vote_views.vote_answer, name='vote_answer'),
 ]
