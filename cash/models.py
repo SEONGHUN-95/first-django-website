@@ -9,6 +9,7 @@ class Question(models.Model):
     modify_date = models.DateTimeField(null=True, blank=True)
     create_date = models.DateTimeField()
     voter = models.ManyToManyField(User, related_name = 'voter_question')
+    view_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.subject
@@ -28,3 +29,10 @@ class Comment(models.Model):
     modify_date = models.DateTimeField(null=True, blank=True)
     question = models.ForeignKey(Question, null=True, blank=True, on_delete=models.CASCADE)
     answer = models.ForeignKey(Answer, null=True, blank=True, on_delete=models.CASCADE)
+
+class QuestionCount(models.Model):
+    ip = models.CharField(max_length=30)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+
+    def __unicode__(self):
+        return self.ip
